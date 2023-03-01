@@ -63,7 +63,7 @@ const App = () => {
           </p>
           <div className='flex flex-wrap gap-3 justify-center mx-auto '>{diceElement}</div>
           <div className='flex justify-center mt-3'>
-            <button className='bg-blue-400 py-2 px-7 rounded-md text-white font-bold' onClick={rollNewDice}>
+            <button className='bg-blue-400 py-2 px-7 rounded-md text-white font-semibold' onClick={rollNewDice}>
               {tenzies ? 'New Game' : 'Roll'}
             </button>
           </div>
