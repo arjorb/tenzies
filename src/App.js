@@ -20,7 +20,11 @@ const App = () => {
   };
 
   const handleHold = id => {
-    console.log(id);
+    setDice(
+      dice.map(die => {
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      })
+    );
   };
 
   const [dice, setDice] = useState(generateNewDice);
