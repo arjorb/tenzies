@@ -13,7 +13,6 @@ const App = () => {
 
   const rollNewDice = () => {
     setDice(generateNewDice);
-    console.log('clicked');
   };
 
   const [dice, setDice] = useState(generateNewDice);
