@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import Dice from './components/Dice';
-
+import { nanoid } from 'nanoid';
 const App = () => {
   const generateNewDice = () => {
     const newDice = [];
     for (let i = 0; i < 10; i++) {
       const randomNumber = Math.ceil(Math.random() * 6);
-      newDice.push(randomNumber);
+      newDice.push({
+        id: nanoid(),
+        value: randomNumber,
+        isHeld: false,
+      });
     }
     return newDice;
   };
@@ -15,9 +19,16 @@ const App = () => {
     setDice(generateNewDice);
   };
 
+  const handleHold = id => {
+    console.log(id);
+  };
+
   const [dice, setDice] = useState(generateNewDice);
 
-  const diceElement = dice.map(die => <Dice value={die} />);
+  console.log(dice);
+  const diceElement = dice.map(die => (
+    <Dice isHeld={die.isHeld} value={die.value} handleHold={() => handleHold(die.id)} />
+  ));
 
   return (
     <div className='flex justify-center mt-32'>

@@ -1,7 +1,16 @@
 import React from 'react';
 
 const Dice = props => {
-  return <div className='py-3 px-5 bg-white mt-2 cursor-pointer rounded-md font-bold'>{props.value}</div>;
+  return (
+    <div
+      className={`py-3 px-5 mt-2 cursor-pointer rounded-md font-bold ${
+        props.isHeld ? 'bg-yellow-500 text-white' : 'bg-white'
+      }`}
+      onClick={props.handleHold}
+    >
+      {props.value}
+    </div>
+  );
 };
 
 export default Dice;
