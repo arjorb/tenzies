@@ -16,11 +16,16 @@ const App = () => {
   };
 
   const rollNewDice = () => {
-    setDice(
-      dice.map(die => {
-        return die.isHeld ? die : { id: nanoid(), value: Math.ceil(Math.random() * 6), isHeld: false };
-      })
-    );
+    if (!tenzies) {
+      setDice(
+        dice.map(die => {
+          return die.isHeld ? die : { id: nanoid(), value: Math.ceil(Math.random() * 6), isHeld: false };
+        })
+      );
+    } else {
+      setDice(generateNewDice);
+      setTenzies(false);
+    }
   };
 
   const handleHold = id => {
