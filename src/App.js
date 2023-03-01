@@ -5,10 +5,9 @@ const App = () => {
   const generateNewDice = () => {
     const newDice = [];
     for (let i = 0; i < 10; i++) {
-      const randomNumber = Math.ceil(Math.random() * 6);
       newDice.push({
         id: nanoid(),
-        value: randomNumber,
+        value: Math.ceil(Math.random() * 6),
         isHeld: false,
       });
     }
@@ -16,7 +15,11 @@ const App = () => {
   };
 
   const rollNewDice = () => {
-    setDice(generateNewDice);
+    setDice(
+      dice.map(die => {
+        return die.isHeld ? die : { id: nanoid(), value: Math.ceil(Math.random() * 6), isHeld: false };
+      })
+    );
   };
 
   const handleHold = id => {
@@ -28,6 +31,7 @@ const App = () => {
   };
 
   const [dice, setDice] = useState(generateNewDice);
+  const [tenzies, setTenzies] = useState(false);
 
   console.log(dice);
   const diceElement = dice.map(die => (
