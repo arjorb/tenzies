@@ -1,4 +1,6 @@
+import React, { useState } from 'react';
 import Dice from './components/Dice';
+
 const App = () => {
   const generateNewDice = () => {
     const newDice = [];
@@ -6,9 +8,16 @@ const App = () => {
       const randomNumber = Math.ceil(Math.random() * 6);
       newDice.push(randomNumber);
     }
-    console.log(newDice);
     return newDice;
   };
+
+  const rollNewDice = generateNewDice => {
+    console.log('clicked');
+  };
+
+  const [dice, setDice] = useState(generateNewDice);
+
+  const diceElement = dice.map(die => <Dice value={die} />);
 
   return (
     <div className='flex justify-center mt-32'>
@@ -18,18 +27,7 @@ const App = () => {
           <p className='text-center mt-2 font-light text-sm  w-10/12 mx-auto text-[#4A4E74]'>
             Roll until all dice are the same. Click each die to freeze it at its current value between rolls.
           </p>
-          <div className='flex flex-wrap gap-3 justify-center mx-auto '>
-            <Dice value='1' />
-            <Dice value='2' />
-            <Dice value='3' />
-            <Dice value='4' />
-            <Dice value='5' />
-            <Dice value='6' />
-            <Dice value='7' />
-            <Dice value='8' />
-            <Dice value='9' />
-            <Dice value='10' />
-          </div>
+          <div className='flex flex-wrap gap-3 justify-center mx-auto '>{diceElement}</div>
           <div className='flex justify-center mt-3'>
             <button className='bg-blue-400 py-2 px-7 rounded-md text-white font-bold'>Roll</button>
           </div>
