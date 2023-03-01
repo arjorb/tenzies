@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dice from './components/Dice';
 import { nanoid } from 'nanoid';
+import Confetti from 'react-confetti';
 const App = () => {
   const generateNewDice = () => {
     const newDice = [];
@@ -33,13 +34,22 @@ const App = () => {
   const [dice, setDice] = useState(generateNewDice);
   const [tenzies, setTenzies] = useState(false);
 
-  console.log(dice);
+  useEffect(() => {
+    const allHeld = dice.every(die => die.isHeld);
+    const allSame = dice.every(die => die.value === dice[0].value);
+
+    if (allHeld && allSame) {
+      setTenzies(true);
+    }
+  }, [dice]);
+
   const diceElement = dice.map(die => (
     <Dice isHeld={die.isHeld} value={die.value} handleHold={() => handleHold(die.id)} />
   ));
 
   return (
     <div className='flex justify-center mt-32'>
+      {tenzies && <Confetti />}
       <h1 className='w-[380px] h-[399px] bg-[#0B2434] rounded-md flex justify-center items-center'>
         <div className='w-[340px] h-[340px] bg-[#F5F5F5] rounded-md'>
           <h1 className='text-center mt-10 font-bold text-2xl text-[#2B283A]'>Tenzies</h1>
