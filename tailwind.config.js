@@ -17,10 +17,7 @@ module.exports = {
           200: '#4A4E74',
         },
       },
-      width: {
-        85: '21.25rem',
-      },
-      height: {
+      spacing: {
         85: '21.25rem',
       },
     },
