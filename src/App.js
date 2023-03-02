@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Dice from './components/Dice';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
+
 const App = () => {
   const generateNewDice = () => {
     const newDice = [];
@@ -55,13 +56,13 @@ const App = () => {
   return (
     <div className='flex justify-center mt-32'>
       {tenzies && <Confetti />}
-      <h1 className='w-[380px] h-[399px] bg-[#0B2434] rounded-md flex justify-center items-center'>
-        <div className='w-[340px] h-[340px] bg-[#F5F5F5] rounded-md'>
-          <h1 className='text-center mt-10 font-bold text-2xl text-[#2B283A]'>Tenzies</h1>
-          <p className='text-center mt-2 font-light text-sm  w-10/12 mx-auto text-[#4A4E74]'>
+      <h1 className='w-96 h-96 bg-primary-100 rounded-md flex justify-center items-center'>
+        <div className='w-85 h-85 bg-secondary-100 rounded-md'>
+          <h1 className='text-center mt-10 font-bold text-2xl text-dark-100'>Tenzies</h1>
+          <p className='text-center mt-2 font-light text-sm w-10/12 mx-auto text-dark-200'>
             Roll until all dice are the same. Click each die to freeze it at its current value between rolls.
           </p>
-          <div className='flex flex-wrap gap-3 justify-center mx-auto '>{diceElement}</div>
+          <div className='flex flex-wrap gap-3 justify-center mx-auto'>{diceElement}</div>
           <div className='flex justify-center mt-3'>
             <button className='bg-blue-400 py-2 px-7 rounded-md text-white font-bold' onClick={rollNewDice}>
               {tenzies ? 'New Game' : 'Roll'}
