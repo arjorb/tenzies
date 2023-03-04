@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Dice = ({ isHeld, value, handleHold }) => {
   return (
     <div

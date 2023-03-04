@@ -4,7 +4,10 @@ import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
 
 const App = () => {
-  const generateNewDice = () => {
+  const [dice, setDice] = useState(generateNewDice);
+  const [tenzies, setTenzies] = useState(false);
+
+  function generateNewDice() {
     const newDice = [];
     for (let i = 0; i < 10; i++) {
       newDice.push({
@@ -14,7 +17,7 @@ const App = () => {
       });
     }
     return newDice;
-  };
+  }
 
   const rollNewDice = () => {
     if (!tenzies) {
@@ -36,9 +39,6 @@ const App = () => {
       })
     );
   };
-
-  const [dice, setDice] = useState(generateNewDice);
-  const [tenzies, setTenzies] = useState(false);
 
   useEffect(() => {
     const allHeld = dice.every(die => die.isHeld);
